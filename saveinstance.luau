@@ -2002,10 +2002,6 @@ local function synsaveinstance(CustomOptions, CustomOptions2)
 
 		local PlaceName = game.PlaceId
 
-		pcall(function()
-			PlaceName ..= " " .. service.MarketplaceService:GetProductInfo(PlaceName).Name
-		end)
-
 		local function sanitizeFileName(str)
 			return string.sub(string.gsub(string.gsub(string.gsub(str, "[^%w _]", ""), " +", " "), " +$", ""), 1, 240)
 		end
@@ -2033,10 +2029,10 @@ local function synsaveinstance(CustomOptions, CustomOptions2)
 		if IsModel then
 			placename = (
 				FilePath
-				or sanitizeFileName("model " .. PlaceName .. " " .. (ToSaveInstance or tmp[1] or game):GetFullName())
-			) .. ".rbxmx"
+				or sanitizeFileName("Model_" .. PlaceName .. "_" .. (ToSaveInstance or tmp[1] or game):GetFullName())
+			) .. ".rbxm"
 		else
-			placename = (FilePath or sanitizeFileName("place " .. PlaceName)) .. ".rbxlx"
+			placename = (FilePath or sanitizeFileName("Place_" .. PlaceName)) .. ".rbxl"
 		end
 
 		if GLOBAL_ENV[placename] then
@@ -3248,9 +3244,9 @@ local function synsaveinstance(CustomOptions, CustomOptions2)
 		StatusText.Text = "Saving..."
 
 		StatusText.BackgroundTransparency = 1
-		StatusText.Font = Enum.Font.Code
-		StatusText.AnchorPoint = Vector2.new(1)
-		StatusText.Position = UDim2.new(1)
+		StatusText.Font = Enum.Font.SourceSansPro
+		StatusText.AnchorPoint = Vector2.new(0.5, 0.5)
+		StatusText.Position = UDim2.new(0.5, 0, 0.05, 0)
 		StatusText.Size = UDim2.new(0.3, 0, 0, 20)
 
 		StatusText.TextColor3 = Color3.new(1, 1, 1)
@@ -3379,15 +3375,14 @@ local function synsaveinstance(CustomOptions, CustomOptions2)
 				local Log10 = math.log10(elapse_t)
 				local ExtraTime = 10
 				if ok then
-					StatusText.Text = string.format("Saved! Time %.3f seconds; Size %s", elapse_t, get_size_format())
-					StatusText.TextColor3 = Color3.new(0, 1)
+					StatusText.Text = string.format("Saved as %s | Time %.3f seconds | Size %s", game.PlaceId, elapse_t, get_size_format())
 					task.wait(Log10 * 2 + ExtraTime)
 				else
 					if Loading then
 						task.cancel(Loading)
 						Loading = nil
 					end
-					StatusText.Text = "Failed! Check F9 console for more info"
+					StatusText.Text = "Failed | Check F9 console for more info"
 					StatusText.TextColor3 = Color3.new(1)
 					warn("Error found while saving:")
 					warn(err)
