@@ -2174,7 +2174,7 @@ local function synsaveinstance(CustomOptions, CustomOptions2)
 			end
 			Loading = task.spawn(function()
 				local spinner_count = 0
-				local chars = { "|", "/", "—", "\\" }
+				local chars = { "●", "○" }
 				local chars_size = #chars
 
 				local function getLoadingText()
@@ -2290,7 +2290,7 @@ local function synsaveinstance(CustomOptions, CustomOptions2)
 
 					if s then
 						if not bytecode or bytecode == "" then
-							return "-- The Script is Empty"
+							return "-- The script is empty"
 						end
 						hashed_bytecode = sha384(bytecode)
 						cached = ldeccache[hashed_bytecode]
@@ -3136,7 +3136,7 @@ local function synsaveinstance(CustomOptions, CustomOptions2)
 						local savestr = string.sub(chunk.str, (i - 1) * SEGMENT_SIZE + 1, i * SEGMENT_SIZE)
 
 						run_with_loading(
-							"Writing to File " .. math.round(currentlen / totallen * 100) .. "% (Depends on Exec)",
+							"Writing to File " .. math.round(currentlen / totallen * 100) .. "% (Depends on executor)",
 							nil,
 							true,
 							appendfile,
@@ -3245,8 +3245,8 @@ local function synsaveinstance(CustomOptions, CustomOptions2)
 
 		StatusText.BackgroundTransparency = 1
 		StatusText.Font = Enum.Font.SourceSans
-		StatusText.AnchorPoint = Vector2.new(0.5, 0.5)
-		StatusText.Position = UDim2.new(0.5, 0, 0.05, 0)
+		StatusText.AnchorPoint = Vector2.new(1)
+		StatusText.Position = UDim2.new(1)
 		StatusText.Size = UDim2.new(0.3, 0, 0, 20)
 
 		StatusText.TextColor3 = Color3.new(1, 1, 1)
