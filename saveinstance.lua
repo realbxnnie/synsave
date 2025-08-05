@@ -1,2 +1,4 @@
-warn("saveinstance.lua is deprecated! Use saveinstance.luau")
-warn("More at https://github.com/realbxnnie/synsave")
+return function()
+  warn("saveinstance.lua is deprecated! Use saveinstance.luau")
+  warn("More at https://github.com/realbxnnie/synsave")
+end
