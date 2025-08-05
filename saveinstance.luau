@@ -3244,7 +3244,7 @@ local function synsaveinstance(CustomOptions, CustomOptions2)
 		StatusText.Text = "Saving..."
 
 		StatusText.BackgroundTransparency = 1
-		StatusText.Font = Enum.Font.SourceSansPro
+		StatusText.Font = Enum.Font.SourceSans
 		StatusText.AnchorPoint = Vector2.new(0.5, 0.5)
 		StatusText.Position = UDim2.new(0.5, 0, 0.05, 0)
 		StatusText.Size = UDim2.new(0.3, 0, 0, 20)
